@@ -9,9 +9,17 @@ public class Offer {
 //        System.out.print(j);
 //        System.out.print(i);
 
-        int[] in = {1,2,4,7,11,15};
+        int[] in = {1,5,4,2,0};
+        String str = "i am a stum";
+        ListNode head1 = new ListNode(1);
+        ListNode head2 = new ListNode(2);
+        ListNode head3 = new ListNode(3);
+        ListNode head4 = new ListNode(4);
+        head1.next = head2;
+        head2.next = head3;
+        head3.next = head4;
         Solution solution = new Solution();
-        ArrayList res = solution.FindNumbersWithSum(in, 15);
+        ListNode res = solution.swapPairs(head1);
         System.out.print(res);
     }
 }

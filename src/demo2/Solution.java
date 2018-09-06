@@ -3,45 +3,34 @@ package demo2;
 import java.lang.reflect.Array;
 import java.util.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashMap;
+
 
 
 public class Solution {
-    public ArrayList<Integer> FindNumbersWithSum(int [] array,int sum) {
-        // 思路 对撞指针啊
-        ArrayList<Integer> res = new ArrayList<>();
-        int n = array.length;
-        if(n < 2)
-            return res;
-        int l = 0;int r = n-1;
-        int mul;  // 还没初始化res
-        boolean flg = true;
-        while(l<r){
-            if(array[l] + array[r] == sum){
-                if(flg){
-                    res.add(array[l]);
-                    res.add(array[r]);
-                    flg = false;
-                }
-                else{
-                    // 比较乘积
-                    mul = array[l] * array[r];
-                    if(mul < res.get(0) * res.get(1)){
-                        res.set(0, array[l]);
-                        res.set(1, array[r]);
-                    }
-                }
-            }
-            else if(array[l] + array[r] > sum)
-                r --;
-            else
-                l++;
+    public ListNode swapPairs(ListNode head) {
+        if(head == null){
+            return head;
         }
-        return res;
+        ListNode dummyhead = new ListNode(-1);
+        dummyhead.next = head;
+        ListNode cur = head;
+        ListNode pre = dummyhead;
+        while ((cur != null) && (cur.next != null)){
+            // 交换cur 和 cur.next
+            ListNode nxt = cur.next;
+            cur.next = nxt.next;
+            nxt.next = cur;
+            pre.next = nxt;
+            // 移动
+            pre = cur;
+            cur = pre.next;
+        }
+        return dummyhead.next;
     }
 }
+
+
 
 class ListNode {
     int val;
